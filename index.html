@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rosie's Adventure</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        body { margin: 0; background-color: #111; }
+        .canvas-wrapper {
+            position: fixed;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        .canvas {
+            width: 960px;
+            height: 640px;
+        }
+        #screen {
+            position: absolute;
+            image-rendering: pixelated;
+        }
+        #screenl2 {
+            position: absolute;
+            image-rendering: pixelated;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas canvas-wrapper">
+        <canvas id="screen" class="canvas" width="480" height="320"></canvas>
+        <canvas id="screenl2" class="canvas" width="480" height="320"></canvas>
+    </div>
+    <script src="js/top.js"></script>
+    <script src="js/stages.js"></script>
+    <script src="js/DefineCharacter.js"></script>
+    <script src="js/DefineOrcs.js"></script>
+    <script src="js/DefineTiles.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/keyState.js"></script>
+    <script src="js/update.js"></script>
+</body>
+</html>
