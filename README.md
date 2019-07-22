@@ -1,2 +1,3 @@
 # RPG-Moving
-This is made for Practice Javascript (ES5)
+[**바로가기**](http://rpg-moving.s3-website.ap-northeast-2.amazonaws.com/)
+This is just made for Practice Javascript (ES5)
