@@ -1,3 +1,8 @@
+var jsKeyUp = document.getElementById('jsKeyUp');
+var jsKeyDown = document.getElementById('jsKeyDown');
+var jsKeyLeft = document.getElementById('jsKeyLeft');
+var jsKeyRight = document.getElementById('jsKeyRight');
+
 function collisionCheck( dir, entity ) {
     
     var CollisionTile = entity.checkCollision();
@@ -53,6 +58,7 @@ function KeyState(entity) {
     }
 }
 
+
 // 키 이벤트 등록
 var keyControl = [ 'keydown', 'keyup' ];
 for ( var i=0; i<keyControl.length; i++ ) {
@@ -60,15 +66,19 @@ for ( var i=0; i<keyControl.length; i++ ) {
         var key = event.keyCode;
         var isKeyDown = event.type;
         if ( key === 38 ) {
+            event.preventDefault();
             isKeyDown === 'keydown'? Rosie.go.up = 1 : Rosie.go.up = 0;
         }
         if ( key === 40 ) {
+            event.preventDefault();
             isKeyDown === 'keydown'? Rosie.go.down = 1 : Rosie.go.down = 0;
         }
         if ( key === 37 ) {
+            event.preventDefault();
             isKeyDown === 'keydown'? Rosie.go.left = 1 : Rosie.go.left = 0;
         }
         if ( key === 39 ) {
+            event.preventDefault();
             isKeyDown === 'keydown'? Rosie.go.right = 1 : Rosie.go.right = 0;
         }
         if ( isKeyDown !== 'keydown' ) {
@@ -77,3 +87,21 @@ for ( var i=0; i<keyControl.length; i++ ) {
         }
     });
 }
+
+// 롱탭시, 컨텍스트 메뉴 안나오게 하기
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
+
+// for javascript
+jsKeyUp.addEventListener( 'touchstart', function() { Rosie.go.up = 1; } );
+jsKeyDown.addEventListener( 'touchstart', function() { Rosie.go.down = 1; });
+jsKeyLeft.addEventListener( 'touchstart', function() { Rosie.go.left = 1; });
+jsKeyRight.addEventListener( 'touchstart', function() { Rosie.go.right = 1; });
+
+jsKeyUp.addEventListener( 'touchend', function() { Rosie.go.up = 0; Rosie.go.ing = 0; Rosie.AnimateWalk(0); } );
+jsKeyDown.addEventListener( 'touchend', function() { Rosie.go.down = 0; Rosie.go.ing = 0; Rosie.AnimateWalk(0); });
+jsKeyLeft.addEventListener( 'touchend', function() { Rosie.go.left = 0; Rosie.go.ing = 0; Rosie.AnimateWalk(0); });
+jsKeyRight.addEventListener( 'touchend', function() { Rosie.go.right = 0; Rosie.go.ing = 0; Rosie.AnimateWalk(0); });

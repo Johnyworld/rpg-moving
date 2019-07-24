@@ -2,33 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Rosie's Adventure</title>
     <link rel="shortcut icon" href="favicon.ico">
     <style>
-        body { margin: 0; background-color: #111; }
-        .canvas-wrapper {
-            position: fixed;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        body, div { margin: 0; background-color: #111; }
+        .canvas-wrapper { position: relative; width: 960px; height: 640px; top: 50vh; left: 50%; transform: translate(-50%, -50%); }
+        .set-size { width: 960px; height: 640px; }
+        .canvas-wrapper canvas { position: absolute; image-rendering: pixelated; }
+        #screenl2 { z-index: 10; }
+        .arrows { display: none; position: fixed; bottom: 0; width: 100%; }
+        .arrows > button { background-color: white; position: fixed; bottom: 17%; left: 50%; transform: translate(-50%, 0); width: 60px; height: 60px; outline: none; }
+        .arrows > #jsKeyUp { transform: translate(-50%, -150%); }
+        .arrows > #jsKeyLeft { transform: translate(-200%, 0); }
+        .arrows > #jsKeyRight { transform: translate(100%, 0); }
+        .arrows > #jsKeyDown { transform: translate(-50%, 150%); }
+        @media screen and ( max-width: 1023px ) {
+            .canvas-wrapper { top: 0; }
+            .set-size { width: 110%; height: auto; }
+            .arrows { display: block; }
         }
-        .canvas {
-            width: 960px;
-            height: 640px;
-        }
-        #screen {
-            position: absolute;
-            image-rendering: pixelated;
-        }
-        #screenl2 {
-            position: absolute;
-            image-rendering: pixelated;
-            z-index: 10;
+        @media screen and ( max-width: 767px ) { 
+            .set-size { width: 125%; }
+            .arrows > button { width: 40px; height: 40px; }
         }
     </style>
 </head>
 <body>
-    <div class="canvas canvas-wrapper">
-        <canvas id="screen" class="canvas" width="480" height="320"></canvas>
-        <canvas id="screenl2" class="canvas" width="480" height="320"></canvas>
+    <div class="set-size canvas-wrapper">
+        <canvas id="screen" class="set-size" width="480" height="320"></canvas>
+        <canvas id="screenl2" class="set-size" width="480" height="320"></canvas>
+    </div>
+    <div class="arrows">
+        <button id="jsKeyUp">up</button>
+        <button id="jsKeyLeft">left</button>
+        <button id="jsKeyRight">right</button>
+        <button id="jsKeyDown">down</button>
     </div>
     <script src="js/top.js"></script>
     <script src="js/stages.js"></script>
